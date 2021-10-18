@@ -146,4 +146,28 @@ public class FieldFormatterCleanupsTest {
 
         assertEquals(Optional.empty(), entry.getField(StandardField.MONTH));
     }
+    @Test
+    public void equalsTest(){
+        FieldFormatterCleanups actions = new FieldFormatterCleanups(true, Cleanups.parse("month[clear]"));
+        assertEquals(true,actions.equals(actions));
+    }
+    @Test
+    public void equalsTestObjectNull(){
+        FieldFormatterCleanups actions = new FieldFormatterCleanups(true, Cleanups.parse("month[clear]"));
+        assertEquals(false,actions.equals(null));
+    }
+
+    @Test
+    public void equalsTestObjectGetClass(){
+        FieldFormatterCleanups actions = new FieldFormatterCleanups(true, Cleanups.parse("month[clear]"));
+        FieldFormatterCleanups action2 = new FieldFormatterCleanups(true, Cleanups.parse("month[clear]"));
+        assertEquals(true,actions.equals(action2));
+    }
+    @Test
+    public void equalsTestEnable(){
+        FieldFormatterCleanups actions = new FieldFormatterCleanups(true, Cleanups.parse("month[clear]"));
+        FieldFormatterCleanups action2 = new FieldFormatterCleanups(false, Cleanups.parse("month[clear]"));
+        assertEquals(false,actions.equals(action2));
+    }
 }
+
